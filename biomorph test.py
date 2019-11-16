@@ -3,8 +3,7 @@ import random
 import pygame.math
 win = pygame.display.set_mode((1000,500))
 pygame.init()
-Color_line=(255,0,0)
-nodes = []
+
 class Node(object):
     
     def __init__(self, pos, depth, parent):
