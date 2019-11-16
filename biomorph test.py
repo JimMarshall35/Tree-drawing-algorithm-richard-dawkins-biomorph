@@ -27,22 +27,26 @@ def addNodePair(i, node, length, anglemagnitude):
         LorR *= -1
         pygame.display.flip() # update screen to show drawn lines
         nodes.append(newnode)
+        
+treenumber = 15
+run = True
+while(run):
+    for x in range(15): # draws 15 trees
+        nodes = []
+        Color_line = (random.randrange(0,255),random.randrange(0,255),random.randrange(0,255))
+        anglemagnitude = random.randrange(0,360)
+        length = random.randrange(2,30)
+        x= (x+1)*(1000/treenumber)
+        y= 300
+        base = Node(pygame.math.Vector2(x,y),0,None)
+        startnode = Node(pygame.math.Vector2(x,y-20), 0, base)
+        pygame.draw.line(win,Color_line, base.get_pos(), startnode.get_pos())
+        pygame.display.flip()
+        nodes.append(startnode)
+        for i in range(1,6):  # recursion depth of 6
+            for node in nodes:
+                if node.depth == i-1:
+                    addNodePair(i, node, length,anglemagnitude)
 
-for x in range(15): # draws 15 trees
-    nodes = []
-    Color_line = (random.randrange(0,255),random.randrange(0,255),random.randrange(0,255))
-    anglemagnitude = random.randrange(10,120)
-    length = random.randrange(2,30)
-    x= 500 + random.randrange(-500, 500)
-    y= 500
-    base = Node(pygame.math.Vector2(x,y),0,None)
-    startnode = Node(pygame.math.Vector2(x,y-20), 0, base)
-    pygame.draw.line(win,Color_line, base.get_pos(), startnode.get_pos())
-    pygame.display.flip()
-    nodes.append(startnode)
-    for i in range(1,6):  # recursion depth of 6
-        for node in nodes:
-            if node.depth == i-1:
-                addNodePair(i, node, length,anglemagnitude)
-            
+    win.fill((0,0,0))
     
