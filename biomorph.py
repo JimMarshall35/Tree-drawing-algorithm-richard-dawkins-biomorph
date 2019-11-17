@@ -1,10 +1,7 @@
 import pygame
 import random
 import pygame.math
-#import pygame.time
-#win = pygame.display.set_mode((1000,500))
-
-#pygame.init()
+import pygame.time
 defaultanglemag = 30
 defaultlength = 20
 defaultdepth = 10
@@ -16,7 +13,7 @@ class Node(object):
         self.pos = pos
         self.depth = depth
         self.parent = parent        
-    def addNodePair(self, i, biomorph):
+    def addNodePair(self, i, biomorph, Color_line):
         LorR = 1 
         normalizedvector = (self.pos - self.parent.pos).normalize()
         for x in range(2):
@@ -32,23 +29,29 @@ class Node(object):
             
             newnode = Node(newpos, i, self)
             biomorph.nodes.append(newnode)
-            pygame.draw.line(win, Color_line, (self.pos), (newnode.pos))
             LorR *= -1            
-        pygame.display.flip() # update screen to show drawn lines   
+        
 class BioMorph(object):    
     def __init__(self, genome):
         self.genome = genome
         self.nodes = []
-    def draw(self, x, y): # draws the biomorph at the x and y coordinates passed
+        
+    def create(self, x, y, Color_line): 
+        self.Color_line = Color_line
         base = Node(pygame.math.Vector2(x,y),0,None)
-        startnode = Node(pygame.math.Vector2(x,y+biomorph.genome[3]*((maxlengthchange)/9)+1), 0, base)
-        pygame.draw.line(win,Color_line, base.pos, startnode.pos)
-        pygame.display.flip()
+        startnode = Node(pygame.math.Vector2(x,y+self.genome[3]*((maxlengthchange)/9)+1), 0, base)
         self.nodes.append(startnode)
         for i in range(1, abs(self.genome[0])):  
             for node in self.nodes:
                 if node.depth == i-1:
-                    node.addNodePair(i, self)
-    
+                    node.addNodePair(i, self, Color_line)
+                
 
+    def draw(self):
+        for node in self.nodes:
+            if node.parent != None:
+                pygame.draw.line(win, self.Color_line, node.pos, node.parent.pos)
+
+        pygame.display.flip()
+                
     
