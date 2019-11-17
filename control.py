@@ -15,7 +15,7 @@ pygame.init()
 
 treenumber = 5
 mybiomorph = None
-Color_line = (random.randrange(0,255),random.randrange(0,255),random.randrange(0,255)) 
+Color_line = (random.randrange(0,255),random.randrange(0,255),random.randrange(0,255))
 run = True  
 while(run):
     events = pygame.event.get()
@@ -43,6 +43,8 @@ while(run):
                                        random.randrange(-9,9),
                                        random.randrange(-9,9),
                                        random.randrange(-9,9),
+                                       random.randrange(-9,9),
+                                       random.randrange(-9,9),
                                        random.randrange(-9,9)))
                 mybiomorph.create(500,250,Color_line)
                 print(mybiomorph.genome)
@@ -51,6 +53,8 @@ while(run):
                 textinput.cursor_position = 0
                 Color_line = (random.randrange(0,255),random.randrange(0,255),random.randrange(0,255)) 
                 break
+
+            
             else:
                 try:
                     genome = ast.literal_eval(textinput.get_text())
@@ -58,7 +62,7 @@ while(run):
                 except:
                     print("enter a valid tuple or list")
                     break
-                if len(genome) != 5:
+                if len(genome) != 7:
                     print("length must equal 5")
                     break
                 else:

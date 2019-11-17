@@ -19,10 +19,11 @@ class Node(object):
         for x in range(2):
             k1 = maxanglechange/9
             k2 = (maxlengthchange+1)/9
-            fraction = i/biomorph.genome[0]
+            depthfraction = i/biomorph.genome[0]
+            distancefraction = self.pos.distance_to(self.parent.pos)/(2*maxlengthchange + defaultlength)
             
-            rotationamount = defaultanglemag+biomorph.genome[1]*k1 + biomorph.genome[2]*fraction*k1
-            magnitude = defaultlength + biomorph.genome[3]*k2 + biomorph.genome[4]*fraction*k2
+            rotationamount = defaultanglemag+biomorph.genome[1]*k1 + biomorph.genome[2]*depthfraction*k1 + biomorph.genome[3]*distancefraction*k1
+            magnitude = defaultlength + biomorph.genome[4]*k2 + biomorph.genome[5]*depthfraction*k2 + biomorph.genome[6]*distancefraction*k2
             
             rotatedvector = normalizedvector.rotate(rotationamount*LorR)
             newpos = self.pos + rotatedvector* magnitude
