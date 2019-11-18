@@ -20,33 +20,28 @@ run = True
 while(run):
     events = pygame.event.get()
     for event in events:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DELETE:
+                textinput.clear_text()
         if event.type == pygame.QUIT:
             exit()
 
     win.fill((0, 0, 0))
     win.blit(textinput.get_surface(), (10, 10))
-    if mybiomorph != None:
-        mybiomorph.draw()
-
-    pygame.display.update()
-    clock.tick(30)
-    for event in events:
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DELETE:
-                textinput.clear_text()
+    
     if textinput.update(events):
         
         genomeinput = True
         while(genomeinput):
             if(textinput.get_text()[0]== "r"):
-                mybiomorph = BioMorph((random.randrange(-9,9),
+                mybiomorph = BioMorph((random.randrange(-9,9), # draw a biomorph - step 1. create a new biomorph object and initialize with genome
                                        random.randrange(-9,9),
                                        random.randrange(-9,9),
                                        random.randrange(-9,9),
                                        random.randrange(-9,9),
                                        random.randrange(-9,9),
                                        random.randrange(-9,9)))
-                mybiomorph.create(500,250,Color_line)
+                mybiomorph.create(500,250)          # draw a biomorph - step 2. call create, specifying screen position and colour to grow the tree and populate mybiomorph.nodes
                 print(mybiomorph.genome)
                 print(len(mybiomorph.nodes))
                 textinput.input_string = str(mybiomorph.genome)
@@ -93,7 +88,11 @@ while(run):
             break
 
 
+    if mybiomorph != None:
+        mybiomorph.draw(Color_line) # draw a biomorph - step 3. call create, specifying screen position and colour - this connects the nodes with lines, actually drawing it
 
+    pygame.display.update()
+    clock.tick(30)
 
 
 
@@ -101,20 +100,4 @@ while(run):
 
 
         
-##    for x in range(treenumber): # draws 15 trees
-##        #nodes = []
-##        mybiomorph = BioMorph((
-##                             random.randrange(-9,9),
-##                             random.randrange(-9,9),
-##                             random.randrange(-9,9),
-##                             random.randrange(-9,9),
-##                             random.randrange(-9,9)
-##                            ))
-##        print(mybiomorph.genome)
-##        Color_line = (random.randrange(0,255),random.randrange(0,255),random.randrange(0,255)) 
-##
-##        x= x*(1000/treenumber) + 0.5*(1000/treenumber)
-##        y= 300
-##        mybiomorph.draw(x,y, Color_line)
-##    pygame.time.wait(1000)
-##    win.fill((0,0,0))
+
