@@ -14,8 +14,8 @@ class Node(object):
         self.depth = depth
         self.parent = parent        
     def addNodePair(self, i, biomorph):                  
-        normalizedvector = (self.pos - self.parent.pos).normalize()  # the direction the branch that this node forms the tip of is pointing - will be rotated in
-                                                                     # the for loop below and will have its length changed, then be used to generate a new generate a position for a new node
+        normalizedvector = (self.pos - self.parent.pos).normalize()  # the direction the branch that this node forms the tip of is pointing - this will be rotated in
+                                                                     # the for loop below and will have its length changed, then be used to generate a new position for a new node
                                                                                             
         LorR = 1                 # LorR == left or right. This is used in conjunction with the for loop to rotate in first a positive then negative direction so that the v shape of new branches is symmetrical
         
