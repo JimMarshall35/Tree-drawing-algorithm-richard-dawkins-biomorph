@@ -26,7 +26,7 @@ class Node(object):
             
             depthfraction = i/biomorph.genome[0]                  # the current depth over the maximum depth that will be reached
             
-            distancefraction = self.pos.distance_to(self.parent.pos)/(2*maxlengthchange + defaultlength)  # the length of the previous previous branch over the maximum possible lenght a branch can be -
+            distancefraction = self.pos.distance_to(self.parent.pos)/(2*maxlengthchange + defaultlength)  # the length of the previous  branch over the maximum possible lenght a branch can be -
                                                                                                           # confusingly this is default length + 2*maxlength change because two genes add to the default length each capable
                                                                                                           # adding a maximum of maxlengthchange to the default length
 
