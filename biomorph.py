@@ -61,7 +61,17 @@ class BioMorph(object):
                 if node.depth == i-1:             # only make the outer nodes grow branches
                     node.addNodePair(i, self)    # grow branches, passing a reference to self and i - the current "depth"
                 
-
+    def randomChild(self,index,step): # step and index  passed must be between -9 and +9
+        possiblestep = self.genome[index] + step
+        returnbm = BioMorph(self.genome)
+        
+        if possiblestep  > 9 or possiblestep < -9:
+            returnbm.genome[index] -= step
+            
+        else:
+            returnbm.genome[index] += step
+        return returnbm
+    
     def draw(self, Color_line):         # connect each node with its parent with a line and then call display.flip() to update the screen and draw the biomorph
         for node in self.nodes:
             if node.parent != None:
