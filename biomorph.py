@@ -58,7 +58,7 @@ class BioMorph(object):
         self.nodes.append(startnode)
         for i in range(1, abs(self.genome[0])):  # genome[0] determines number the number of times a new pair of branches is added to the outer nodes - ie the final "depth" of the biomorphs branching
             for node in self.nodes:              
-                if node.depth == i-1             # only make the outer nodes grow branches
+                if node.depth == i-1:             # only make the outer nodes grow branches
                     node.addNodePair(i, self)    # grow branches, passing a reference to self and i - the current "depth"
                 
 

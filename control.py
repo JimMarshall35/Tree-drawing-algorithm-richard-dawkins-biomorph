@@ -84,7 +84,7 @@ while(run):
                     else:
                         break
             mybiomorph = BioMorph(intconvertedgenome)
-            mybiomorph.create(500,250,Color_line)
+            mybiomorph.create(500,250)
             break
 
 
