@@ -38,20 +38,26 @@ pygame.init()
 
 morphtime = 1500
 elapsed = 0
-biomorph1 = BioMorph([9, # draw a biomorph - step 1. create a new biomorph object and initialize with genome
+depth = 8
+biomorph1 = BioMorph([random.randrange(-9,9), # draw a biomorph - step 1. create a new biomorph object and initialize with genome
                        random.randrange(-9,9),
                        random.randrange(-9,9),
                        random.randrange(-9,9),
                        random.randrange(-9,9),
                        random.randrange(-9,9),
-                       random.randrange(-9,9 )])
-biomorph2 = randomWalk()
-print("B1 Genome: " + str(biomorph1.genome))
+                       random.randrange(-9,9)])
+biomorph2 = BioMorph([random.randrange(-9,9), # draw a biomorph - step 1. create a new biomorph object and initialize with genome
+                       random.randrange(-9,9),
+                       random.randrange(-9,9),
+                       random.randrange(-9,9),
+                       random.randrange(-9,9),
+                       random.randrange(-9,9),
+                       random.randrange(-9,9)])
 print("B2 Genome: " + str(biomorph2.genome))
 print()
 Color_line = (random.randrange(0,255),random.randrange(0,255),random.randrange(0,255))
 
-drawnbiomorph = BioMorph((9,0,0,0,0,0,0))
+drawnbiomorph = BioMorph((depth,0,0,0,0,0,0))
 drawnbiomorph.create(500,250)
 create()
 Color_line = (random.randrange(0,255),random.randrange(0,255),random.randrange(0,255))
@@ -61,10 +67,15 @@ while(run):
     if elapsed > morphtime:
         elapsed = 0
         biomorph1 = biomorph2
-        biomorph2 = randomWalk()
+        biomorph2 = BioMorph([random.randrange(-9,9), # draw a biomorph - step 1. create a new biomorph object and initialize with genome
+                       random.randrange(-9,9),
+                       random.randrange(-9,9),
+                       random.randrange(-9,9),
+                       random.randrange(-9,9),
+                       random.randrange(-9,9),
+                       random.randrange(-9,9)])
         Color_line = (random.randrange(0,255),random.randrange(0,255),random.randrange(0,255))
         create()
-        print("B1 Genome: " + str(biomorph1.genome))
         print("B2 Genome: " + str(biomorph2.genome))
         print()
         
